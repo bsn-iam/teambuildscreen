@@ -246,7 +246,7 @@ namespace TeamBuildScreen.Core.ViewModels
 			switch (DataModel.Model.CompilationStatus)
 			{
 				case BuildPhaseStatus.Failed:
-					this.TestResults = String.Format("Compilation Failed");
+					//this.TestResults = String.Format("Compilation Failed");
 					break;
 				case BuildPhaseStatus.Succeeded:
 					this.TestResults = String.Format("Compilation Succeeded");
@@ -257,7 +257,7 @@ namespace TeamBuildScreen.Core.ViewModels
 			switch (DataModel.Model.TestStatus)
 			{
 				case BuildPhaseStatus.Failed:
-					this.TestResults += String.Format(" Test Failed");
+					//this.TestResults += String.Format(" Test Failed");
 					break;
 				case BuildPhaseStatus.Succeeded:
 					this.TestResults += String.Format(" Test Succeeded");

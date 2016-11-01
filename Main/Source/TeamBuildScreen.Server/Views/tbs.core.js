@@ -17,7 +17,7 @@ TeamBuildScreen.ConvertStatusToString = function (status) {
     } else if (status === "Loading") {
         return "Loading..."
     } else if (status === "NoneFound") {
-        return "No build(s) found."
+        return "No build(s) found for TeamBuildScreen."
     } else {
         return status;
     }

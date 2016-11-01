@@ -41,7 +41,7 @@ namespace TeamBuildScreen.Core.Views.Converters
                 case BuildStatus.Loading:
                     return "Loading...";
                 case BuildStatus.NoneFound:
-                    return "No build(s) found.";
+                    return "No build(s) found for BuildStatusStringConverter.";
                 default:
                     return status.ToString();
             }

@@ -17,13 +17,15 @@ namespace TeamBuildScreen.Core
         private IBuildServerService service;
         private IDomainProjectPicker projectPicker;
         private string title;
-
+        
         public TeamBuildDesktop(IBuildServerService service, IDomainProjectPicker projectPicker, string title)
         {
             this.service = service;
             this.projectPicker = projectPicker;
             this.title = title;
         }
+
+        public static int StaleThreshold = Settings.Default.StaleThreshold;
 
         public void Startup()
         {
@@ -49,7 +51,7 @@ namespace TeamBuildScreen.Core
             var builds = Settings.Default.Builds;
             var viewModel = new DesktopViewModel(this.service, builds);
             var desktop = new Desktop(viewModel);
-
+            
             // configure view model
             viewModel.Columns = Settings.Default.Columns;
             viewModel.ConfigRequested += (object sender, EventArgs e) =>

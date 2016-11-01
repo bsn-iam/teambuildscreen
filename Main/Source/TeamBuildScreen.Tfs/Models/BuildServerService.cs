@@ -6,6 +6,10 @@
 
 using System.Threading;
 using Microsoft.TeamFoundation;
+using TeamBuildScreen.Core.Models;
+using TeamBuildScreen.Core.ViewModels;
+using TeamBuildScreen.Core.Views;
+using TeamBuildScreen.Core;
 
 namespace TeamBuildScreen.Tfs.Models
 {
@@ -96,7 +100,8 @@ namespace TeamBuildScreen.Tfs.Models
 		/// </summary>
 		public BuildServerService() : base(30000)
 		{
-			this.Init(7);
+            int StaleThreshold = TeamBuildScreen.Core.TeamBuildDesktop.StaleThreshold;
+            this.Init(StaleThreshold);
 		}
 
 		/// <summary>
@@ -305,34 +310,37 @@ namespace TeamBuildScreen.Tfs.Models
 					return;
 				}
 
-				List<Build> buildResults = new List<Build>();
+                List<Build> buildResults = new List<Build>();
+                DateTime today = System.DateTime.Now;
 
-				try
+
+                foreach (var teamProject in teamProjects)
+                {
+                    for (int i = 0; i < this.StaleThreshold; i++)
+                    {
+                        try
+                        {
+                            buildResults.AddRange(buildClient.GetBuildsAsync(project: teamProject.Name, type: DefinitionType.Build, minFinishTime: today.AddDays(-i - 1), maxFinishTime: today.AddDays(-i)).Result);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                            this.OnError();
+                        }
+                    }
+                }
+
+                if (!buildResults.Any())
 				{
-					foreach (var teamProject in teamProjects)
-					{
-						buildResults.AddRange(buildClient.GetBuildsAsync(project: teamProject.Name).Result);
-					}
-
-					if (!buildResults.Any())
-					{
-						return;
-					}
-
-					// refresh build queueus
-					foreach (var buildQueue in this.buildQueues)
-					{
-						buildQueue.Refresh(false);
-					}
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine(e);
-					this.OnError();
-
 					return;
 				}
 
+				// refresh build queueus
+				foreach (var buildQueue in this.buildQueues)
+				{
+					buildQueue.Refresh(false);
+				}
+    
 				// update the IBuildDetail associated with each IBuildDetailSpec
 				for (int i = 0; i < this.builds.Count; i++)
 				{

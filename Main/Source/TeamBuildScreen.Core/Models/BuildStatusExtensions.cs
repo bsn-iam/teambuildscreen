@@ -23,7 +23,7 @@ namespace TeamBuildScreen.Core.Models
 				case BuildStatus.Loading:
 					return "Loading...";
 				case BuildStatus.NoneFound:
-					return "No build(s) found.";
+					return "No build(s) found for BuildStatusExtensions.";
 				default:
 					throw new ArgumentOutOfRangeException("buildStatus");
 			}
