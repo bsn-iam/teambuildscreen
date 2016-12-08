@@ -289,7 +289,15 @@ namespace TeamBuildScreen.Tfs.Models
 					QueryLib();
 					break;
 				case Core.Models.ServerVersion.Dev14:
-					QueryREST();
+                    try
+                    {
+                        QueryREST();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        this.OnError();
+                    }
 					break;
 				default:
 					QueryLib();
@@ -357,9 +365,17 @@ namespace TeamBuildScreen.Tfs.Models
 
 					if (result != null)
 					{
-						var buildResult = buildClient.GetBuildAsync(project: teamProject, buildId: result.Id).Result;
+                        try
+                        {
+                            var buildResult = buildClient.GetBuildAsync(project: teamProject, buildId: result.Id).Result;
+                            this.builds[build.Key] = buildResult;
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                            this.OnError();
+                        }
 
-						this.builds[build.Key] = buildResult;
 					}
 				}
 			}

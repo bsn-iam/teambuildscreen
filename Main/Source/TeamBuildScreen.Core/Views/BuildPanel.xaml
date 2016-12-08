@@ -58,7 +58,7 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.Effect>
-                        <DropShadowEffect ShadowDepth="8" Opacity="0.6" Color="#FF000000" Direction="-45" />
+                        <DropShadowEffect ShadowDepth="08" Opacity="0.6" Color="#FF000000" Direction="-45" />
                     </Grid.Effect>
                     <Ellipse x:Name="Circle" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Width="{Binding ElementName=Circle, Path=ActualHeight}" Grid.ColumnSpan="2">
                         <Ellipse.Fill>
@@ -166,26 +166,26 @@
 							any storyboards that may have been started. This results in silent warnings in
 							the output window during runtime.
 							 -->
-                            <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+                            <!--<StopStoryboard BeginStoryboardName="FailedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
                             <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
                             <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
-                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
-                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="LoadingStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/> -->
+                            <BeginStoryboard Storyboard="{StaticResource BrightenBuildPanel}" Name="LoadingStoryboard"/>
                         </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="NoneFound">
                         <DataTrigger.EnterActions>
-                            <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+                           <!-- <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
                             <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
                             <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
-                            <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
-                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="NoneFoundStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>-->
+                            <BeginStoryboard Storyboard="{StaticResource BrightenBuildPanel}" Name="NoneFoundStoryboard"/>
                         </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Succeeded">
@@ -214,14 +214,14 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="InProgress">
                         <DataTrigger.EnterActions>
-                            <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+                            <!--<StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
                             <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
                             <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
-                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
-                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="InProgressStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>-->
+                            <BeginStoryboard Storyboard="{StaticResource BrightenBuildPanel}" Name="InProgressStoryboard"/>
                         </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="PartiallySucceeded">
@@ -238,26 +238,26 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Stopped">
                         <DataTrigger.EnterActions>
-                            <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+                            <!--<StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
                             <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
                             <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
                             <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
-                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
-                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="StoppedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>-->
+                            <BeginStoryboard Storyboard="{StaticResource BrightenBuildPanel}" Name="StoppedStoryboard"/>
                         </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="NotStarted">
                         <DataTrigger.EnterActions>
-                            <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+                            <!--<StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
                             <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
                             <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
                             <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
-                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
-                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="NotStartedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>-->
+                            <BeginStoryboard Storyboard="{StaticResource BrightenBuildPanel}" Name="NotStartedStoryboard"/>
                         </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding IsQueued}" Value="True">
