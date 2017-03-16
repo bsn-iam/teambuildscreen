@@ -1,1 +1,8 @@
 *.suo
+/Main/Source/*/obj/*/*
+/Main/Source/TeamBuildScreen.Core/obj/x86/Release
+/Main/Source/TeamBuildScreen.Core/bin/x86/Release
+/Main/Source/TeamBuildScreen.DesktopDemo/obj/x86/Release
+/Main/.vs
+/Main/.vs/TeamBuildScreen/v14/.suo
+/Main/.vs/config/applicationhost.config
