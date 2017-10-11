@@ -258,7 +258,7 @@ namespace TeamBuildScreen.Tfs.Models
 
 			foreach (var project in teamProjects)
 			{
-				List<DefinitionReference> definitions = buildClient.GetDefinitionsAsync(project: project.Name).Result;
+				var definitions = buildClient.GetDefinitionsAsync(project: project.Name).Result;
 
 				foreach (var definition in definitions)
 				{
@@ -328,7 +328,7 @@ namespace TeamBuildScreen.Tfs.Models
                     {
                         try
                         {
-                            buildResults.AddRange(buildClient.GetBuildsAsync(project: teamProject.Name, type: DefinitionType.Build, minFinishTime: today.AddDays(-i - 1), maxFinishTime: today.AddDays(-i)).Result);
+                            buildResults.AddRange(buildClient.GetBuildsAsync(project: teamProject.Name, minFinishTime: today.AddDays(-i - 1), maxFinishTime: today.AddDays(-i)).Result);
                         }
                         catch (Exception e)
                         {
